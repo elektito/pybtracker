@@ -50,7 +50,7 @@ shell to interact with the server:
 
 ::
 
-   $ python -m pybtracker.client udp://127.0.0.1
+   $ python -m pybtracker.client udp://127.0.0.1:8000
    BitTorrent tracker client. Type help or ? to list commands.
 
    (btrc) help
