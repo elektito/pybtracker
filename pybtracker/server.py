@@ -6,6 +6,7 @@ from ipaddress import ip_address
 from random import randint, sample
 from datetime import datetime, timedelta
 from collections import defaultdict
+from version import __version__
 
 DEFAULT_INTERVAL = 300
 
@@ -256,6 +257,9 @@ def main():
         '--log-level', '-L', default='info',
         choices=['debug', 'info', 'warning', 'error', 'critical'],
         help='Set log level. Defaults to "info".')
+    parser.add_argument(
+        '--version', action='version',
+        version='pybtracker v' + __version__)
 
     args = parser.parse_args()
 

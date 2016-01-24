@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 from collections import defaultdict
 from ipaddress import ip_address
 from datetime import datetime, timedelta
+from version import __version__
 
 class ServerError(Exception):
     pass
@@ -367,6 +368,9 @@ def main():
         '--log-level', '-L', default='info',
         choices=['debug', 'info', 'warning', 'error', 'critical'],
         help='Set log level. Defaults to "info".')
+    parser.add_argument(
+        '--version', action='version',
+        version='pybtracker v' + __version__)
 
     args = parser.parse_args()
     setup_logging(args)
