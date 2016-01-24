@@ -42,12 +42,14 @@ It also includes a UDP tracker client:
 You can run the server independently by running:
 
 ::
+
    $ python -m pybtracker.server -b 127.0.0.1:8000 -O
 
 The client can also be run independently and it provides you with a
 shell to interact with the server:
 
 ::
+
    $ python -m pybtracker.client udp://127.0.0.1
    BitTorrent tracker client. Type help or ? to list commands.
 
