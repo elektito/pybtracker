@@ -60,3 +60,7 @@ shell to interact with the server:
 
    (btrc) quit
    $
+
+If you have installed pybtracker using pip or setup.py, you can also
+run ``pybtracker`` and ``pybtracker-client`` instead of using ``python
+-m``.
