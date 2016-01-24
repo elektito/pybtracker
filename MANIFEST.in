@@ -1,0 +1,3 @@
+include Makefile
+include requirements.txt
+include LICENSE.txt
