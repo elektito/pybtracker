@@ -300,13 +300,19 @@ class ClientShell(cmd.Cmd):
         ].index(args.event)
 
         try:
-            self.loop.run_until_complete(self.client.announce(
+            ret = self.loop.run_until_complete(self.client.announce(
                 args.infohash,
                 args.downloaded,
                 args.left,
                 args.uploaded,
                 args.event,
                 args.num_want))
+            if ret:
+                print('Received {} peer(s) from the tracker:'.format(len(ret)))
+                for host, port in ret:
+                    print('    {}:{}'.format(host, port))
+            else:
+                print('No peers received from the tracker.')
         except ServerError as e:
             print(e)
         except TimeoutError:
