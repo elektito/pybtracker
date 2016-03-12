@@ -155,10 +155,6 @@ class UdpTrackerClientProto(asyncio.Protocol):
                      for p in peers]
 
             self.client.callback('announced', infohash, peers)
-
-            print('Received {} peer(s).'.format(len(peers)))
-            for host, port in peers:
-                print('    {}:{}'.format(host, port))
         else:
             peers = None
             self.logger.info('No reply received to announce message.')
