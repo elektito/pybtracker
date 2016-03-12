@@ -375,7 +375,7 @@ def main():
         choices=['debug', 'info', 'warning', 'error', 'critical'],
         help='Set log level. Defaults to "info".')
     parser.add_argument(
-        '--version', action='version',
+        '--version', '-V', action='version',
         version='pybtracker v' + __version__)
 
     args = parser.parse_args()
