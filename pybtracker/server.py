@@ -11,7 +11,7 @@ DEFAULT_INTERVAL = 300
 
 
 class UdpTrackerServerProto(asyncio.Protocol):
-    def __init__(self, server, allowed_torrents):
+    def __init__(self, server, allowed_torrents=None):
         self.server = server
         self.logger = server.logger
         self.connection_lost_received = asyncio.Event()
@@ -274,7 +274,7 @@ def main():
         metavar='HOST:PORT',
         help='The address to bind to. Defaults to 127.0.0.1:8000')
     parser.add_argument(
-        '--white-list', '-w', default='',
+        '--whitelist', '-w', default='',
         help='White list with torrent info hashes.')
     parser.add_argument(
         '--log-to-stdout', '-O', action='store_true', default=False,
@@ -295,22 +295,23 @@ def main():
     loop = asyncio.get_event_loop()
 
     allowed_torrents = {}
-    task = None
 
-    if args.white_list:
+    if args.whitelist:
         with open(args.whitelist) as f:
             allowed_torrents = set(f.read().splitlines())
 
-    tracker = TrackerServer(local_addr=args.bind, loop=loop, allowed_torrents=allowed_torrents)
+    tracker = TrackerServer(local_addr=args.bind,
+                            loop=loop,
+                            allowed_torrents=allowed_torrents)
+
+    if args.whitelist:
+        asyncio.ensure_future(tracker.watcher_whitelist(args.whitelist))
     asyncio.ensure_future(tracker.start())
+
     try:
-        if args.white_list:
-            task = loop.create_task(tracker.watcher_whitelist(args.whitelist))
         loop.run_forever()
     except KeyboardInterrupt:
         print()
-        if task is not None:
-            task.cancel()
         loop.run_until_complete(tracker.stop())
 
 
