@@ -33,7 +33,7 @@ setup(
     license = 'MIT',
     author_email = 'mostafa@sepent.com',
     url = 'https://github.com/elektito/pybtracker',
-    download_url = 'https://github.com/elektito/pybtracker/archive/v{}.tar.gz'.format(__version__)
+    download_url = 'https://github.com/elektito/pybtracker/archive/v{}.tar.gz'.format(__version__),
     keywords = ['bittorrent', 'torrent', 'tracker', 'asyncio', 'udp'],
     classifiers = [
         'Programming Language :: Python :: 3'
