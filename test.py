@@ -28,7 +28,7 @@ class TrackerServerProtocolTest(asynctest.TestCase):
                 b'44444444444444444444': ('4.4.4.4', 4444, 0, 0, 0, False),
             }
         }
-        self.proto = pybtracker.server.UdpTrackerServerProto(self.server)
+        self.proto = pybtracker.server.UdpTrackerServerProto(self.server, allowed_torrents={})
         self.proto.transport = Mock(asyncio.DatagramTransport)
 
     def assert_is_error(self, msg, expected_tid, expected_msg):
