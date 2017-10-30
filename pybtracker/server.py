@@ -55,7 +55,7 @@ class UdpTrackerServerProto(asyncio.Protocol):
             # old. remove it and send an error.
             del self.server.connids[connid]
             return self.error(tid, 'Old connection identifier.'.encode('utf-8'))
-        elif len(self.allowed_torrents) > 0 and ih not in self.allowed_torrents:
+        elif self.allowed_torrents and ih not in self.allowed_torrents:
             return self.error(tid, 'Unknown/Forbidden torrent.'.encode('utf-8'))
         else:
             if ev == 0:
