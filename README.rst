@@ -24,7 +24,7 @@ It also includes a UDP tracker client:
    from pybtracker import TrackerClient
 
    async def announce():
-       client = TrackerServer(local_addr='udp://127.0.0.1:8000', loop=loop)
+       client = TrackerClient(local_addr='udp://127.0.0.1:8000', loop=loop)
        await client.start()
        peers = await client.announce(
            b'01234567890123456789',  # infohash
