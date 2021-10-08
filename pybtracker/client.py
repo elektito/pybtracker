@@ -107,7 +107,7 @@ class UdpTrackerClientProto(asyncio.Protocol):
             self.logger.info('No reply received.')
 
     async def announce(self, infohash, num_want, downloaded, left, uploaded,
-                       event=0, ip=0):
+                       event=0, ip=0, port=0):
         if not self.client.interval or not self.client.connid or \
            datetime.now() > self.client.connid_timestamp + \
            timedelta(seconds=self.client.connid_valid_period):
@@ -121,7 +121,7 @@ class UdpTrackerClientProto(asyncio.Protocol):
         self.logger.info('Sending announce message.')
         action = 1
         tid = self.get_tid()
-        port = self.transport._sock.getsockname()[1]
+        port = port or self.transport._sock.getsockname()[1]
         key = random.randint(0, 0xffffffff)
         ip = int.from_bytes(ip_address(ip).packed, byteorder='big')
         msg = struct.pack('!QII20s20sQQQIIIIH', self.client.connid, action, tid,
