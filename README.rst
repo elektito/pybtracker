@@ -7,6 +7,7 @@ script like this:
 
 ::
 
+   import asyncio
    from pybtracker import TrackerServer
 
    loop = asyncio.get_event_loop()
@@ -21,10 +22,11 @@ It also includes a UDP tracker client:
 
 ::
 
+   import asyncio
    from pybtracker import TrackerClient
 
    async def announce():
-       client = TrackerClient(local_addr='udp://127.0.0.1:8000', loop=loop)
+       client = TrackerClient(announce_uri='udp://127.0.0.1:8000', loop=loop)
        await client.start()
        peers = await client.announce(
            b'01234567890123456789',  # infohash
