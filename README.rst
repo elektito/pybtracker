@@ -5,7 +5,7 @@ pybtracker is a UDP BitTorrent tracker written in Python 3.5 using
 co-routines and the ``asyncio`` module. You can use the tracker in a
 script like this:
 
-::
+:: code:: python
 
    import asyncio
    from pybtracker import TrackerServer
@@ -20,7 +20,7 @@ script like this:
 
 It also includes a UDP tracker client:
 
-::
+:: code:: python
 
    import asyncio
    from pybtracker import TrackerClient
@@ -43,14 +43,14 @@ It also includes a UDP tracker client:
 
 You can run the server independently by running:
 
-::
+:: code:: sh
 
    $ python -m pybtracker.server -b 127.0.0.1:8000 -O
 
 The client can also be run independently and it provides you with a
 shell to interact with the server:
 
-::
+:: code:: sh
 
    $ python -m pybtracker.client udp://127.0.0.1:8000
    BitTorrent tracker client. Type help or ? to list commands.
@@ -63,6 +63,6 @@ shell to interact with the server:
    (btrc) quit
    $
 
-If you have installed pybtracker using pip or setup.py, you can also
-run ``pybtracker`` and ``pybtracker-client`` instead of using ``python
--m``.
+If you have installed pybtracker using ``pip`` or ``setup.py``, you
+can also run ``pybtracker`` and ``pybtracker-client`` instead of using
+``python -m``.
